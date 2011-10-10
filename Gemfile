@@ -11,6 +11,8 @@ gem 'therubyracer'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
 
+gem "pg", :group => :production
+
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
