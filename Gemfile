@@ -10,6 +10,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
+gem 'rack' , '1.3.3'
 
 # Use this group for Heroku.
 #group :production do
