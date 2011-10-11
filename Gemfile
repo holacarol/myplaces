@@ -11,10 +11,11 @@ gem 'therubyracer'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
 
-group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
-  gem 'pg'
-end
+# Use this group for Heroku.
+#group :production do
+#  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
+#  gem 'pg'
+#end
 
 group :development do
   gem 'rspec-rails', '2.6.1'
