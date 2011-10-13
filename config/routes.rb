@@ -1,7 +1,9 @@
 Myplaces::Application.routes.draw do
-  get "users/new"
+  devise_for :users
 
-  match '/signup',  :to => 'users#new'
+  match '/users/:id', :to => 'users#show', :as => :user
+
+  # match '/signup',  :to => 'users#new'
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
