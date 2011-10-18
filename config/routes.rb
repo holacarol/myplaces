@@ -4,7 +4,9 @@ Myplaces::Application.routes.draw do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
-  match '/users/:id', :to => 'users#show', :as => :user
+  match '/users/:id', :to => 'users#show', :as => :user, :via => :get
+  match '/users', :to => 'users#index', :as => :users
+  match '/users/:id', :to => 'users#destroy', :via => :delete
 
   # match '/signup',  :to => 'users#new'
 
