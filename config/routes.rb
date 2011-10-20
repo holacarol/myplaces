@@ -8,7 +8,7 @@ Myplaces::Application.routes.draw do
   match '/users', :to => 'users#index', :as => :users
   match '/users/:id', :to => 'users#destroy', :via => :delete
 
-  # match '/signup',  :to => 'users#new'
+  resources :cards, :only => [:create, :destroy]
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'

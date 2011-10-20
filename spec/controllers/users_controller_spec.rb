@@ -84,6 +84,14 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+
+    it "should show the user's cards" do
+      card1 = Factory(:card, :user => @user, :comment => "Foo bar")
+      card2 = Factory(:card, :user => @user, :comment => "Baz quux")
+      get :show, :id => @user
+      response.should have_selector("span.comment", :content => card1.comment)
+      response.should have_selector("span.comment", :content => card2.comment)
+    end
   end
 
   describe "DELETE 'destroy'" do

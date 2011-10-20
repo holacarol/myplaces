@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @cards = @user.cards.paginate(:page => params[:page])
     @title = @user.name
   end
 

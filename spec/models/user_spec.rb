@@ -117,4 +117,46 @@ describe User do
       @user.should be_admin
     end
   end
+
+  describe "card associations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      @card1 = Factory(:card, :user => @user, :created_at => 1.day.ago)
+      @card2 = Factory(:card, :user => @user, :created_at => 1.hour.ago)
+    end
+
+    it "should have a cards attribute" do
+      @user.should respond_to(:cards)
+    end
+
+    it "should have the right cards in the right order" do
+      @user.cards.should == [@card2, @card1]
+    end
+
+    it "should destroy associated cards" do
+      @user.destroy
+      [@card1, @card2].each do |card|
+        Card.find_by_id(card.id).should be_nil
+      end
+    end
+
+    describe "status feed" do
+
+      it "should have a feed" do
+        @user.should respond_to(:feed)
+      end
+
+      it "should include the user's cards" do
+        @user.feed.include?(@card1).should be_true
+        @user.feed.include?(@card2).should be_true
+      end
+
+      it "should not include a different user's cards" do
+        card3 = Factory(:card,
+                      :user => Factory(:user, :email => Factory.next(:email)))
+        @user.feed.include?(card3).should be_false
+      end
+    end
+  end
 end

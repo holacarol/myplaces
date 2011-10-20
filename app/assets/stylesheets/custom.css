@@ -192,3 +192,59 @@ ul.users {
 .users li {
   list-style: none;
 }
+
+/* Cards */
+h1.card {
+  margin-bottom: 0.3em;
+}
+
+table.cards {
+  margin-top: 1em;
+}
+
+table.cards tr {
+  height: 70px;
+}
+
+table.cards tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.cards tr td.card {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.cards tr td.card span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.cards {
+  font-size: 80%;
+}
+
+form.new_card {
+  margin-bottom: 2em;
+}
+
+form.new_card textarea {
+  height: 4em;
+  margin-bottom: 0;
+}

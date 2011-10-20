@@ -9,3 +9,8 @@ end
 Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
+
+Factory.define :card do |card|
+  card.comment "Foo bar"
+  card.association :user
+end

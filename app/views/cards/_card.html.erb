@@ -1,0 +1,15 @@
+<tr>
+  <td class="card">
+    <span class="comment"><%= card.comment %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(card.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_user?(card.user) %>
+  <td>
+    <%= link_to "delete", card, :method => :delete,
+                                     :confirm => "You sure?",
+                                     :title => card.comment %>
+  </td>
+  <% end %>
+</tr>
