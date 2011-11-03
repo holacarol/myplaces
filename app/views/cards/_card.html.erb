@@ -1,5 +1,6 @@
 <tr>
   <td class="card">
+    <span class="place_name"><%= card.place.name %></span>
     <span class="comment"><%= card.comment %></span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(card.created_at) %> ago.

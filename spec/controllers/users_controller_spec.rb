@@ -86,8 +86,10 @@ describe UsersController do
     end
 
     it "should show the user's cards" do
-      card1 = Factory(:card, :user => @user, :comment => "Foo bar")
-      card2 = Factory(:card, :user => @user, :comment => "Baz quux")
+      @place1 = Factory(:place, :googleid => "id1", :googleref => "ref1", :name => "Name1")
+      @place2 = Factory(:place, :googleid => "id2", :googleref => "ref2", :name => "Name2")
+      card1 = Factory(:card, :user => @user, :place => @place1, :comment => "Foo bar")
+      card2 = Factory(:card, :user => @user, :place => @place2, :comment => "Baz quux")
       get :show, :id => @user
       response.should have_selector("span.comment", :content => card1.comment)
       response.should have_selector("span.comment", :content => card2.comment)

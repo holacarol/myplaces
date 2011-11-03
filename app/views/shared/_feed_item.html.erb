@@ -6,6 +6,7 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
+    <span class="place_name"><%= feed_item.place.name %></span>
     <span class="comment"><%= feed_item.comment %></span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.

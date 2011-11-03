@@ -26,7 +26,8 @@ describe CardsController do
     describe "failure" do
 
       before(:each) do
-        @attr = { :comment => "" }
+        @place_attr = {:googleid => "id1", :googleref => "ref1", :name => "name1"}
+        @attr = { :comment => "", :place_attributes => @place_attr }
       end
 
       it "should not create a card" do
@@ -44,7 +45,8 @@ describe CardsController do
     describe "success" do
 
       before(:each) do
-        @attr = { :comment => "Lorem ipsum" }
+        @place_attr = {:googleid => "id1", :googleref => "ref1", :name => "name1"}
+        @attr = { :comment => "Lorem ipsum", :place_attributes => @place_attr }
       end
 
       it "should create a card" do

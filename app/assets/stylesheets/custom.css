@@ -248,3 +248,9 @@ form.new_card textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
+/* Places */
+table.cards tr td.card span.place_name {
+  display: block;
+  font-weight: bold;
+}

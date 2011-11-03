@@ -4,7 +4,8 @@ describe Card do
 
   before(:each) do
     @user = Factory(:user)
-    @attr = { :comment => "value for comment" }
+    @place_attr = {:googleid => "id1", :googleref => "ref1", :name => "name1"}
+    @attr = { :comment => "value for comment", :place_attributes => @place_attr }
   end
 
   it "should create a new instance given valid attributes" do
@@ -34,11 +35,29 @@ describe Card do
     end
 
     it "should require nonblank comment" do
-      @user.cards.build(:comment => "  ").should_not be_valid
+      @user.cards.build(:comment => "  ", :place_attributes => @place_attr).should_not be_valid
     end
 
     it "should reject long comment" do
-      @user.cards.build(:comment => "a" * 141).should_not be_valid
+      @user.cards.build(:comment => "a" * 141, :place_attributes => @place_attr).should_not be_valid
+    end
+
+    it "should reject two cards with the same place for the same user" do
+      @user.cards.create!(@attr)
+      @user.cards.create(@attr).should_not be_valid
+    end
+  end
+
+  describe "place associations" do
+
+    before(:each) do
+      @place_attr = {:googleid => "id1", :googleref => "ref1", :name => "name1"}
+      @card_attr = {:comment => "value for comment", :place_attributes => @place_attr}
+      @card = @user.cards.create(@card_attr)
+    end
+
+    it "should have a place attribute" do
+      @card.should respond_to(:place)
     end
   end
 end

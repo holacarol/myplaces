@@ -10,7 +10,14 @@ Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
 
+Factory.define :place do |place|
+  place.googleid	"id100"
+  place.googleref	"ref100"
+  place.name		"Place100"
+end
+
 Factory.define :card do |card|
   card.comment "Foo bar"
   card.association :user
+  card.association :place
 end

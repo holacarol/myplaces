@@ -1,10 +1,13 @@
+<% @card.build_place %>
 <%= form_for @card do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
+  <%= render :partial => 'shared/place_form',
+             :locals => {:form => f} %>
   <div class="field">
+    <%= f.label :comment %><br />
     <%= f.text_area :comment %>
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
 <% end %>
-

@@ -122,8 +122,10 @@ describe User do
 
     before(:each) do
       @user = User.create(@attr)
-      @card1 = Factory(:card, :user => @user, :created_at => 1.day.ago)
-      @card2 = Factory(:card, :user => @user, :created_at => 1.hour.ago)
+      @place1 = Factory(:place, :googleid => "id1", :googleref => "ref1", :name => "Name1")
+      @place2 = Factory(:place, :googleid => "id2", :googleref => "ref2", :name => "Name2")
+      @card1 = Factory(:card, :user => @user, :place => @place1, :created_at => 1.day.ago)
+      @card2 = Factory(:card, :user => @user, :place => @place2, :created_at => 1.hour.ago)
     end
 
     it "should have a cards attribute" do
@@ -153,10 +155,12 @@ describe User do
       end
 
       it "should not include a different user's cards" do
+        @place3 = Factory(:place, :googleid => "id3", :googleref => "ref3", :name => "Name3")
         card3 = Factory(:card,
-                      :user => Factory(:user, :email => Factory.next(:email)))
+                      :user => Factory(:user, :email => Factory.next(:email)), :place => @place3)
         @user.feed.include?(card3).should be_false
       end
     end
   end
+
 end

@@ -17,9 +17,16 @@ namespace :db do
                    :password_confirmation => password)
     end
 
-    50.times do
+    50.times do |n|
       User.all(:limit => 6).each do |user|
-        user.cards.create!(:comment => Faker::Lorem.sentence(5))
+        googleid = "id#{n+1}"
+	googleref = "ref#{n+1}"
+        name = "Name#{n+1}"
+        place = {:googleid => googleid,
+		 :googleref => googleref,
+		 :name => name}
+        user.cards.create!(:comment => Faker::Lorem.sentence(5), 
+			   :place_attributes => place)
       end
     end
   end

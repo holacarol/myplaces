@@ -1,0 +1,14 @@
+<%= form.fields_for :place do |f| %>
+  <div class="field">
+    <%= f.label :googleid %><br />
+    <%= f.text_field :googleid %>
+  </div>
+  <div class="field">
+    <%= f.label :googleref %><br />
+    <%= f.text_field :googleref %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+<% end %>
