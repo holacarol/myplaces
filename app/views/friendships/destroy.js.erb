@@ -1,0 +1,2 @@
+$("#friendship_form").html("<%= escape_javascript(render('users/addfriend')) %>")
+$("#friends").html('<%= pluralize(@user.friends.count, "friend") %>')

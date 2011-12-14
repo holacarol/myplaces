@@ -7,8 +7,12 @@ Myplaces::Application.routes.draw do
   match '/users/:id', :to => 'users#show', :as => :user, :via => :get
   match '/users', :to => 'users#index', :as => :users
   match '/users/:id', :to => 'users#destroy', :via => :delete
+  match '/users/:id/friends', :to => 'users#friends', :as => :friends_user
+  match '/users/:id/pending_friends', :to => 'users#pending_friends', :as => :pending_friends_user
+  match '/users/:id/requested_friends', :to => 'users#requested_friends', :as => :requested_friends_user
 
-  resources :cards, :only => [:create, :destroy]
+  resources :cards,       :only => [:create, :destroy]
+  resources :friendships, :only => [:create, :update, :destroy]
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'

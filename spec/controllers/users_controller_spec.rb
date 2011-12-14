@@ -136,5 +136,62 @@ describe UsersController do
       end
     end
   end
+
+  describe "friendship pages" do
+
+    describe "when not signed in" do
+
+      it "should protect 'friends'" do
+        get :friends, :id => 1
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "should protect 'pending_friends'" do
+        get :pending_friends, :id => 1
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "should protect 'requested_friends'" do
+        get :requested_friends, :id => 1
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "when signed in" do
+
+      before(:each) do
+        @user = Factory(:user)
+        sign_in(@user)
+        @other_user = Factory(:user, :email => Factory.next(:email))
+        Friendship.request(@user, @other_user)
+      end
+
+      it "should show user pending" do
+        get :pending_friends, :id => @user
+        response.should have_selector("a", :href => user_path(@other_user),
+                                           :content => @other_user.name)
+      end
+
+      it "should show user requested" do
+        get :requested_friends, :id => @other_user
+        response.should have_selector("a", :href => user_path(@user),
+                                           :content => @user.name)
+      end
+
+      it "should show user friend" do
+        Friendship.accept(@user, @other_user)
+        get :friends, :id => @user
+        response.should have_selector("a", :href => user_path(@other_user),
+                                           :content => @other_user.name)
+      end
+
+      it "should show user friend" do
+        Friendship.accept(@user, @other_user)
+        get :friends, :id => @other_user
+        response.should have_selector("a", :href => user_path(@user),
+                                           :content => @user.name)
+      end
+    end
+  end
 end
 

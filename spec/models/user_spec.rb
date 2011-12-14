@@ -163,4 +163,27 @@ describe User do
     end
   end
 
+  describe "friendships" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+      @friend = Factory(:user)
+    end
+
+    it "should have a friendships method" do
+      @user.should respond_to(:friendships)
+    end
+
+    it "should have a friends method" do
+      @user.should respond_to(:friends)
+    end
+
+    it "should have a requested_friends method" do
+      @user.should respond_to(:requested_friends)
+    end
+
+    it "should have a pending_friends method" do
+      @user.should respond_to(:pending_friends)
+    end
+  end
 end

@@ -1,0 +1,5 @@
+<%= form_for current_user.friendships.find_by_friend_id(@user),
+	:html => {:method => :put},
+        :remote => true do |f| %>
+  <div class="actions"><%= f.submit "Confirm friendship" %></div>
+<% end %>
