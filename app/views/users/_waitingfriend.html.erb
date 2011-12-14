@@ -1,1 +1,6 @@
 <div>You already asked for friendship. Waiting for confirmation</div>
+<%= form_for current_user.friendships.find_by_friend_id(@user),
+	:html => { :method => :delete },
+        :remote => true do |f| %>
+  <div class="actions"><%= f.submit "Remove friendship request" %></div>
+<% end %>

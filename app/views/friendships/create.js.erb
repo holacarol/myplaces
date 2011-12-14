@@ -1,2 +1,2 @@
-$("#friendship_form").html("<%= escape_javascript(render('users/destroyfriend')) %>")
+$("#friendship_form").html("<%= escape_javascript(render('users/waitingfriend')) %>")
 $("#requested_friends").html('<%= pluralize(@user.requested_friends.count, "requested friend") %>')
